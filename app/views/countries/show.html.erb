@@ -1,0 +1,33 @@
+<h1>Country Details</h1>
+
+<% flash.each do |name, message| %>
+  <%= content_tag :div, message %>
+<% end %>
+
+<h4>
+  Name: <%= @country.name %>
+</h4>
+
+<p>
+  Cities in <%= @country.name %>
+</p>
+
+<ul>
+  <% @country.cities.each do |city| %>
+    <li>
+      <%= link_to city.name, city_path(city) %>
+    </li>
+  <% end %>
+</ul>
+
+<hr>
+
+<%= link_to 'View All Countries', countries_path %>
+
+<br>
+
+<%= link_to 'Edit Country', edit_country_path(@country) %>
+
+<br>
+
+<%= link_to 'Delete Country', @country, method: :delete, data: { confirm: "Are you sure?" } %>

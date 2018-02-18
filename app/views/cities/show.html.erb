@@ -1,0 +1,25 @@
+<h1>City Details</h1>
+
+<% flash.each do |name, message| %>
+  <%= content_tag :div, message %>
+<% end %>
+
+<h4>
+  Name: <%= @city.name %>
+</h4>
+
+<p>
+  Country: <%= @city.country.name %>
+</p>
+
+<hr>
+
+<%= link_to 'View All Cities', cities_path %>
+
+<br>
+
+<%= link_to 'Edit City', edit_city_path(@city) %>
+
+<br>
+
+<%= link_to 'Delete City', @city, method: :delete, data: { confirm: "Are you sure?" } %>
