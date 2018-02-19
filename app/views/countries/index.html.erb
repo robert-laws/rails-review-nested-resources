@@ -1,5 +1,9 @@
 <h1>All Countries</h1>
 
+<% flash.each do |name, message| %>
+  <%= content_tag :div, message %>
+<% end %>
+
 <ul>
   <% @countries.each do |country| %>
     <li>

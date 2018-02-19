@@ -1,10 +1,27 @@
 class CitiesController < ApplicationController
   def index
-    @cities = City.all
+    if params[:country_id]
+      @country = Country.find_by(id: params[:country_id])
+      if @country.nil?
+        redirect_to cities_path, alert: "Country not Found"
+      else
+        @cities = @country.cities
+      end
+    else
+      @cities = City.all
+    end
   end
 
   def show
-    @city = City.find(params[:id])
+    if params[:country_id]
+      @country = Country.find_by(id: params[:country_id])
+      @city = @country.cities.find_by(id: params[:id])
+      if @city.nil?
+        redirect_to country_cities_path(@country), alert: "City not found"
+      end
+    else
+      @city = City.find(params[:id])
+    end
   end
 
   def new

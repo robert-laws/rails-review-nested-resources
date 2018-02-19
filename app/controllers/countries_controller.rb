@@ -4,7 +4,10 @@ class CountriesController < ApplicationController
   end
 
   def show
-    @country = Country.find(params[:id])
+    @country = Country.find_by(id: params[:id])
+    if @country.nil?
+      redirect_to countries_path, alert: "Country not Found"
+    end
   end
 
   def new

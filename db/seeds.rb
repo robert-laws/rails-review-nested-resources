@@ -1,5 +1,4 @@
-Country.delete_all
-City.delete_all
+Country.destroy_all
 
 @norway = Country.create(name: "Norway")
 @sweden = Country.create(name: "Sweden")
